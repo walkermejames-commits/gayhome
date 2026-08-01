@@ -13,6 +13,7 @@ coverage/
 
 # Operating system/editor files
 .DS_Store
+tmp/
 Thumbs.db
 
 # Generated Phase 1 workbook inspection output

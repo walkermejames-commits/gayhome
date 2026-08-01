@@ -1,0 +1,1 @@
+import { CaseSection } from "@/components/case-section";export default async function Page({params}:{params:Promise<{caseId:string}>}){return <CaseSection caseId={(await params).caseId} section="evidence"/>}

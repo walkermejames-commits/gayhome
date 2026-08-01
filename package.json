@@ -19,6 +19,7 @@
     "db:status": "node scripts/migration-status.mjs",
     "db:seed": "tsx scripts/seed-postgres.ts",
     "db:test:deploy": "tsx scripts/test-postgres-deploy.ts",
+    "test:phase3": "tsx scripts/test-phase3-casework.ts",
     "release:check": "node scripts/release-gates.mjs",
     "import:datasets": "tsx scripts/import-datasets.ts",
     "audit:dataset": "node scripts/audit-revision.mjs",
@@ -27,6 +28,7 @@
   "dependencies": {
     "drizzle-orm": "^0.45.2",
     "next": "^16.2.12",
+    "pdf-lib": "1.17.1",
     "pg": "^8.22.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

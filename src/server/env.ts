@@ -19,6 +19,12 @@ const environmentSchema = z.object({
   OBJECT_STORAGE_REGION: optionalText,
   OBJECT_STORAGE_ACCESS_KEY_ID: optionalText,
   OBJECT_STORAGE_SECRET_ACCESS_KEY: optionalText,
+  MALWARE_SCANNER_ENDPOINT: optionalText,
+  MAIL_PROVIDER: optionalText,
+  EVIDENCE_STORAGE_ENABLED: z.enum(["true", "false"]).default("false"),
+  MAIL_SENDING_ENABLED: z.enum(["true", "false"]).default("false"),
+  EVIDENCE_001_APPROVED: z.enum(["true", "false"]).default("false"),
+  MAIL_001_APPROVED: z.enum(["true", "false"]).default("false"),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });
 
@@ -50,5 +56,7 @@ export function assertDeploymentEnvironment(): AppEnvironment {
   if (missing.length > 0) throw new Error(`Deployment is blocked: missing ${missing.join(", ")}.`);
   if (environment.APP_ENV === "production" && environment.APP_BASE_URL.startsWith("http://")) throw new Error("Deployment is blocked: production APP_BASE_URL must use HTTPS.");
   if ((environment.APP_ENV === "staging" || environment.APP_ENV === "production") && environment.AUTH_TEST_MODE === "true") throw new Error("Deployment is blocked: AUTH_TEST_MODE is forbidden outside development and test.");
+  if (environment.EVIDENCE_STORAGE_ENABLED === "true" && (environment.EVIDENCE_001_APPROVED !== "true" || !environment.OBJECT_STORAGE_ENDPOINT || !environment.OBJECT_STORAGE_BUCKET || !environment.MALWARE_SCANNER_ENDPOINT)) throw new Error("Deployment is blocked: evidence storage requires EVIDENCE-001 approval, object storage and malware scanning.");
+  if (environment.MAIL_SENDING_ENABLED === "true" && (environment.MAIL_001_APPROVED !== "true" || !environment.MAIL_PROVIDER)) throw new Error("Deployment is blocked: external mail requires MAIL-001 approval and an approved provider.");
   return environment;
 }

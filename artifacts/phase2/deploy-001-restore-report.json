@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T21:43:53.349Z",
+  "generatedAt": "2026-08-01T22:51:38.333Z",
   "engine": "PostgreSQL 18 embedded test cluster",
   "migrations": [
     {
@@ -10,6 +10,11 @@
     {
       "filename": "0002_phase2_runtime.sql",
       "sha256": "35F406FE303B3AC1EFBA971D898874FD23C490C4D736E8CF52A7EA8E43870D74",
+      "state": "applied"
+    },
+    {
+      "filename": "0003_phase3_casework.sql",
+      "sha256": "303086021D42AAC9FC68F1978987C987955011979D6E63463636ACECFEF28770",
       "state": "applied"
     }
   ],
@@ -50,9 +55,15 @@
     "integrityPassed": true
   },
   "canonicalDifferences": [],
+  "migrationLifecycle": {
+    "rolledBack": true,
+    "preservedBaselineMigrations": true,
+    "reapplied": true
+  },
   "backup": {
     "format": "kent-navigator-logical-v1",
-    "tableCount": 29
+    "tableCount": 55,
+    "phase3Included": true
   },
   "restore": {
     "serviceCountBefore": 60,

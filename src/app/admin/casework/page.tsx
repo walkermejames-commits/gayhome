@@ -1,0 +1,1 @@
+import { SecureWorkspace } from "@/components/secure-workspace";export default function Page(){return <SecureWorkspace requiredRole="administrator" title="Casework review queue" intro="Administrators see operational metadata, not unrestricted case content."><p>Reason-required, time-limited break-glass access is recorded separately and requires review.</p></SecureWorkspace>}

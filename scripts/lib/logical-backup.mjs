@@ -5,6 +5,11 @@ const TABLES = [
   "profiles", "field_definitions", "profile_facts", "consent_receipts", "form_contracts",
   "autofill_mappings", "sessions", "audit_events", "login_links", "auth_rate_limits",
   "account_deletion_requests", "evidence_metadata", "action_plans", "plan_actions",
+  "cases", "case_events", "case_duties", "case_consents", "case_applications", "case_referrals", "case_decisions",
+  "case_deadlines", "case_tasks", "case_evidence", "case_documents", "case_document_versions",
+  "advocate_organisations", "professional_roles", "advocate_invitations", "case_access_grants", "case_access_permissions", "suitability_assessments",
+  "case_complaints", "case_reviews", "safeguarding_decisions", "case_export_requests",
+  "retention_jobs", "break_glass_access", "case_communications", "notification_preferences",
 ];
 
 const quote = (identifier) => `"${identifier.replaceAll('"', '""')}"`;

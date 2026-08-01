@@ -1,0 +1,2 @@
+import Link from "next/link";import { CaseCreateForm } from "@/components/case-create-form";import { currentSession } from "@/server/auth-cookie";
+export default async function Page(){if(!await currentSession())return <><h1>Sign in required</h1><p>Saved cases are private and need an authenticated account.</p><Link href="/profile">Go to My profile</Link></>;return <><h1>Start a case</h1><p className="lede">You can change these details later. Only share what is needed.</p><CaseCreateForm/></>}
