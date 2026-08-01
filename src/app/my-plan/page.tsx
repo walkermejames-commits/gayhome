@@ -1,0 +1,1 @@
+import { ActionPlan } from "@/components/action-plan"; export default function Page(){return <><h1>My next steps</h1><p className="lede">A session-only plan you can mark, print and take with you. It will be lost when this browser session ends.</p><ActionPlan/></>}

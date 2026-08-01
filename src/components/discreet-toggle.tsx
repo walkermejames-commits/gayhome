@@ -1,0 +1,3 @@
+"use client";
+import { useEffect,useState } from "react";
+export function DiscreetToggle(){const[active,setActive]=useState(false);useEffect(()=>{const frame=requestAnimationFrame(()=>{const value=sessionStorage.getItem("discreet")==="true";setActive(value);document.documentElement.dataset.discreet=String(value);if(value)document.title="Support"});return()=>cancelAnimationFrame(frame)},[]);function change(){const next=!active;setActive(next);sessionStorage.setItem("discreet",String(next));document.documentElement.dataset.discreet=String(next);document.title=next?"Support":"Kent Housing Navigator"}return <button className="secondary" type="button" aria-pressed={active} onClick={change}>{active?"Discreet mode on":"Use discreet mode"}</button>}

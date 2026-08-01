@@ -1,0 +1,23 @@
+name: quality
+on: [push, pull_request]
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm audit:dataset
+      - run: pnpm import:datasets
+      - run: pnpm db:test:deploy
+      - run: pnpm build
+      - run: pnpm audit --prod --audit-level high
+      - name: Guard public source content
+        run: |
+          ! grep -RniE '(demo|test form|revision object|route target|canonical record)' src/app src/components
+          ! grep -RniE '(AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY)' . --exclude-dir=node_modules --exclude-dir=.git

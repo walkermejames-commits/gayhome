@@ -1,0 +1,441 @@
+{
+  "generatedAt": "2026-08-01T03:11:24.967Z",
+  "comparisons": {
+    "services": {
+      "jsonCount": 60,
+      "workbookCount": 60,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": []
+    },
+    "councils": {
+      "jsonCount": 13,
+      "workbookCount": 13,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": []
+    },
+    "triage_routes": {
+      "jsonCount": 12,
+      "workbookCount": 12,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": [
+        "verified_on"
+      ]
+    },
+    "scripts": {
+      "jsonCount": 12,
+      "workbookCount": 12,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": []
+    },
+    "evidence_checklist": {
+      "jsonCount": 12,
+      "workbookCount": 12,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": []
+    },
+    "sources": {
+      "jsonCount": 72,
+      "workbookCount": 72,
+      "missingInWorkbook": [],
+      "extraInWorkbook": [],
+      "cellDifferences": [],
+      "jsonOnlyFields": []
+    }
+  },
+  "integrity": {
+    "duplicateIds": {
+      "services": [],
+      "councils": [],
+      "triage_routes": [],
+      "scripts": [],
+      "evidence_checklist": [],
+      "sources": []
+    },
+    "unresolvedServiceSources": [
+      {
+        "id": "srv_samaritans",
+        "sourceId": "src_samaritans"
+      }
+    ],
+    "unresolvedCouncilSources": [],
+    "unresolvedRouteTargets": [],
+    "criticalRoutesWithoutTargets": []
+  },
+  "verification": {
+    "asOf": "2026-08-01",
+    "overdueCount": 0,
+    "earliestNextReviewDate": "2026-08-30",
+    "reviewSchedule": [
+      {
+        "sourceId": "src_999",
+        "nextReviewDate": "2027-07-31",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_111",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_streetlink",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_porchlight",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_catching_lives",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_thanet_rough",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_tunbridge_homeless",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_kent_homechoice",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_shelter",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_citizens_advice",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_tunbridge_cost",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_cla",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_hlpas",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_homeless_england",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_akt",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_stonewall_housing",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_galop",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_lgbt_foundation",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_mgsd",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_beyou",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_release_pressure",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_shout",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_gp_nfa",
+        "nextReviewDate": "2027-01-27",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_kent_sexual_health",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_kmdap",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_mdas",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_mens_advice",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_victim_support",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_ksas",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_crf",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_food_kent",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_livewell",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_stepchange",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_national_debtline",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_turn2us",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_universal_credit",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_cgl_west",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_withyou_youth",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_frank",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_centrepoint",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_kcc_children",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_medway_youth",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_nacro",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_duty_to_refer",
+        "nextReviewDate": "2027-01-27",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_migrant_help",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_rainbow_migration",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_modern_slavery",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_op_fortitude",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_veterans_aid",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_scope",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_disability_rights",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_immigration_advice",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_national_careers",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_good_things",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_imaan",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_keshet",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_fft",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_switchboard",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_hmrc",
+        "nextReviewDate": "2026-10-29",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_ashford",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_canterbury",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_dartford",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_dover",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_fh",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_gravesham",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_maidstone",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_sevenoaks",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_swale",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_thanet",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_tmbc",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_tunbridge",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      },
+      {
+        "sourceId": "src_medway",
+        "nextReviewDate": "2026-08-30",
+        "overdue": false
+      }
+    ]
+  }
+}

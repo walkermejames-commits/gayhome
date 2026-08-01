@@ -1,0 +1,1 @@
+import{DiscreetToggle}from"@/components/discreet-toggle";export default function Page(){return <><h1>Discreet mode</h1><p className="lede">Use neutral wording and a neutral browser title on this device.</p><DiscreetToggle/><p>This setting lasts only for the current browser session. Quick exit remains available.</p></>}

@@ -1,0 +1,22 @@
+# Generated Phase 0 inspection output
+artifacts/phase0/workbook-renders/
+artifacts/phase0/workbook-inspect.ndjson
+
+# Runtime dependencies and local configuration
+node_modules/
+.next/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Operating system/editor files
+.DS_Store
+Thumbs.db
+
+# Generated Phase 1 workbook inspection output
+artifacts/v1.0.1/workbook-renders/
+artifacts/v1.0.1/audit/workbook-renders/
+artifacts/v1.0.1/audit/repaired-workbook.xlsx
+artifacts/v1.0.1/audit/workbook-inspect.ndjson

@@ -1,0 +1,50 @@
+{
+  "version": "v1.0.1",
+  "parentVersion": "v1",
+  "effectiveDate": "2026-08-01",
+  "revisionReason": "Resolve DATA-001 and update Samaritans 2026 contact transition",
+  "reviewerInstruction": "Authorised Data Repair and Phase 1 Commencement Instruction supplied 2026-08-01",
+  "verificationSource": "https://www.samaritans.org/how-we-can-help/email-service-closing/",
+  "dateApplied": "2026-08-01",
+  "workbookSupplementalFields": {
+    "triageRoutesVerifiedOn": "2026-07-31",
+    "reason": "The approved workbook schema has no per-route verified-on column; this unchanged JSON-only field is supplied explicitly during workbook import."
+  },
+  "process": [
+    "JSON amended with apply_patch against a controlled copy",
+    "Workbook imported, edited, exported, re-imported and rendered with @oai/artifact-tool",
+    "Semantic reconciliation performed by scripts/reconcile-phase0.mjs",
+    "OOXML structural checks performed by scripts/verify-xlsx-structure.ps1"
+  ],
+  "hashes": {
+    "parentJsonSha256": "D41B7056CBA08EDC8951C5360F33054CD0FF3A9FBDCAE4F0425BA0889A155311",
+    "parentWorkbookSha256": "B8F921BB33F326CB167A55EBAA32A8621DE4D5F94C166ABDA955E182E35BB54F",
+    "revisionJsonSha256": "4AFD1FE19A761AB254D150DFD921C6A23786D80921A219103F7617261CEACBD7",
+    "revisionWorkbookSha256": "211F71DF84C2007CD31E421469ADEBA314223557CC514CF34AAC82628B929BE6"
+  },
+  "changes": {
+    "metadata": ["version", "verifiedOn", "note"],
+    "addedSources": ["src_samaritans"],
+    "updatedServices": {
+      "srv_samaritans": ["modes", "email", "url", "referral", "notes", "verifiedOn"]
+    }
+  },
+  "result": {
+    "counts": {
+      "services": 60,
+      "councils": 13,
+      "triageRoutes": 12,
+      "scripts": 12,
+      "evidenceRecords": 12,
+      "sources": 73
+    },
+    "jsonWorkbookCellDifferences": 0,
+    "unresolvedServiceSources": 0,
+    "unresolvedCouncilSources": 0,
+    "unresolvedRouteTargets": 0,
+    "stableIdsPreserved": true,
+    "workbookStructurePassed": true,
+    "allEightSheetsRendered": true,
+    "data001Status": "resolved"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "test_housing_contact",
+  "version": "1.0.0",
+  "title": "Test housing contact form",
+  "purpose": "housing_application",
+  "reviewRequired": true,
+  "fields": [
+    { "key": "fullName", "label": "Your name", "profileFieldKey": "person.full_name", "required": true, "allowOneTimeValue": true },
+    { "key": "safeContact", "label": "Safe contact method", "profileFieldKey": "contact.safe_method", "required": true, "allowOneTimeValue": true },
+    { "key": "currentSituation", "label": "Current housing situation", "profileFieldKey": "housing.current_situation", "required": true, "allowOneTimeValue": true },
+    { "key": "councilArea", "label": "Council area", "profileFieldKey": "location.council_area", "required": true, "allowOneTimeValue": true }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-08-01T21:43:53.349Z",
+  "engine": "PostgreSQL 18 embedded test cluster",
+  "migrations": [
+    {
+      "filename": "0001_phase1_foundation.sql",
+      "sha256": "1E80850FEF3BC13780FD70DF251103F8D05D6DC03A082466C0E1CC6A30F9A119",
+      "state": "applied"
+    },
+    {
+      "filename": "0002_phase2_runtime.sql",
+      "sha256": "35F406FE303B3AC1EFBA971D898874FD23C490C4D736E8CF52A7EA8E43870D74",
+      "state": "applied"
+    }
+  ],
+  "firstSeed": {
+    "version": "v1.0.1",
+    "importId": "64d89271-6704-5ca7-85bc-5fa355232727",
+    "revisionId": "c9745bc8-8631-5065-ae84-12e873b2abdc",
+    "status": "published",
+    "counts": {
+      "services": 60,
+      "councils": 13,
+      "triage_routes": 12,
+      "scripts": 12,
+      "evidence_categories": 12,
+      "sources": 73
+    }
+  },
+  "secondSeed": {
+    "version": "v1.0.1",
+    "importId": "64d89271-6704-5ca7-85bc-5fa355232727",
+    "revisionId": "c9745bc8-8631-5065-ae84-12e873b2abdc",
+    "status": "idempotent",
+    "counts": {
+      "services": 60,
+      "councils": 13,
+      "triage_routes": 12,
+      "scripts": 12,
+      "evidence_categories": 12,
+      "sources": 73
+    }
+  },
+  "canonicalParity": true,
+  "databaseHealth": {
+    "storage": "postgresql",
+    "connected": true,
+    "migrationCurrent": true,
+    "activeRevision": "v1.0.1",
+    "integrityPassed": true
+  },
+  "canonicalDifferences": [],
+  "backup": {
+    "format": "kent-navigator-logical-v1",
+    "tableCount": 29
+  },
+  "restore": {
+    "serviceCountBefore": 60,
+    "serviceCountAfter": 60,
+    "profileRestored": true
+  },
+  "conflictingImport": {
+    "status": "review_required",
+    "reconciliationItems": 1
+  },
+  "passed": true
+}
