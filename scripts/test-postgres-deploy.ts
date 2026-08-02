@@ -35,10 +35,12 @@ try {
   client = postgres.getPgClient();
   await client.connect();
   const migrationResult = await applyMigrations(client);
-  const integrationMigrations = ["0003_phase3_casework.sql", "0004_phase4_access_hardening.sql"];
+  const integrationMigrations = ["0003_phase3_casework.sql", "0004_phase4_access_hardening.sql", "0005_phase5_pilot_operations.sql"];
   const baselineMigrationCount = (await client.query("SELECT count(*)::int AS count FROM schema_migrations WHERE filename <> ALL($1::text[])", [integrationMigrations])).rows[0]?.count;
+  const phase5DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0005_phase5_pilot_operations.down.sql"), "utf8");
   const phase4DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0004_phase4_access_hardening.down.sql"), "utf8");
   const phase3DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0003_phase3_casework.down.sql"), "utf8");
+  await client.query(phase5DownSql);
   await client.query(phase4DownSql);
   await client.query(phase3DownSql);
   await client.query("DELETE FROM schema_migrations WHERE filename = ANY($1::text[])", [integrationMigrations]);
@@ -88,10 +90,10 @@ try {
     databaseHealth,
     canonicalDifferences: canonicalParity ? [] : reconcileCatalogs(envelope.catalog, databaseCatalog).slice(0, 20),
     migrationLifecycle: { rolledBack, preservedBaselineMigrations, phase2SeededBeforeUpgrade: firstSeed.status === "published", existingDataSurvived, preUpgradeCounts, postUpgradeCounts, reapplied },
-    backup: { format: backup.format, tableCount: Object.keys(backup.tables).length, phase3Included: Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "case_access_permissions") },
+    backup: { format: backup.format, tableCount: Object.keys(backup.tables).length, phase3Included: Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "case_access_permissions"), phase5Included: Object.hasOwn(backup.tables, "pilot_programs") && Object.hasOwn(backup.tables, "operational_release_gates") },
     restore: { serviceCountBefore: preRestore.rows[0]?.count, serviceCountAfter: postRestore.rows[0]?.count, profileRestored: restoredProfile.rows[0]?.count === 1 },
     conflictingImport: { status: conflict.status, reconciliationItems: conflictRows.rows[0]?.count },
-    passed: migrationResult.every((item) => item.state === "applied") && rolledBack && preservedBaselineMigrations && existingDataSurvived && reapplied && Object.hasOwn(backup.tables, "cases") && firstSeed.status === "published" && secondSeed.status === "idempotent" && canonicalParity && databaseHealth.connected && databaseHealth.migrationCurrent && databaseHealth.integrityPassed && preRestore.rows[0]?.count === postRestore.rows[0]?.count && restoredProfile.rows[0]?.count === 1 && conflict.status === "review_required" && conflictRows.rows[0]?.count === 1,
+    passed: migrationResult.every((item) => item.state === "applied") && rolledBack && preservedBaselineMigrations && existingDataSurvived && reapplied && Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "pilot_programs") && firstSeed.status === "published" && secondSeed.status === "idempotent" && canonicalParity && databaseHealth.connected && databaseHealth.migrationCurrent && databaseHealth.integrityPassed && preRestore.rows[0]?.count === postRestore.rows[0]?.count && restoredProfile.rows[0]?.count === 1 && conflict.status === "review_required" && conflictRows.rows[0]?.count === 1,
   };
   await fs.mkdir(artifactDir, { recursive: true });
   await fs.writeFile(path.join(artifactDir, "deploy-001-restore-report.json"), `${JSON.stringify(result, null, 2)}\n`);

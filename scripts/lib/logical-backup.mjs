@@ -10,6 +10,13 @@ const TABLES = [
   "advocate_organisations", "professional_roles", "advocate_invitations", "case_access_grants", "case_access_permissions", "suitability_assessments",
   "case_complaints", "case_reviews", "safeguarding_decisions", "case_export_requests",
   "retention_jobs", "break_glass_access", "case_communications", "notification_preferences",
+  "operational_release_gates", "pilot_programs", "pilot_approvals", "pilot_cohorts",
+  "pilot_participants", "pilot_participant_consents", "pilot_feature_flags", "pilot_feature_flag_history",
+  "support_tickets", "operational_incidents", "incident_actions", "pilot_feedback", "pilot_outcomes",
+  "partner_organisations", "partner_memberships", "partner_agreements", "service_correction_proposals",
+  "launch_checklists", "launch_checklist_items", "operating_cost_models", "operating_cost_items",
+  "operational_analytics_events", "commissioner_reports", "operational_releases", "release_approvals",
+  "pilot_notification_preferences", "operational_role_assignments",
 ];
 
 const quote = (identifier) => `"${identifier.replaceAll('"', '""')}"`;

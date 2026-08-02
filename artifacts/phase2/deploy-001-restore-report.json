@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T02:37:11.657Z",
+  "generatedAt": "2026-08-02T07:05:51.806Z",
   "engine": "PostgreSQL 18 embedded test cluster",
   "migrations": [
     {
@@ -20,6 +20,11 @@
     {
       "filename": "0004_phase4_access_hardening.sql",
       "sha256": "DF504FA2B6F4FF8FBF301916ECA13FE549746D861560BDD050A5421C56A5A6D8",
+      "state": "applied"
+    },
+    {
+      "filename": "0005_phase5_pilot_operations.sql",
+      "sha256": "A2A57320CA41B5CA6FB1B898F7BD767D655B3CFC7BF975B1D9C77F49078EF8BB",
       "state": "applied"
     }
   ],
@@ -79,8 +84,9 @@
   },
   "backup": {
     "format": "kent-navigator-logical-v1",
-    "tableCount": 55,
-    "phase3Included": true
+    "tableCount": 82,
+    "phase3Included": true,
+    "phase5Included": true
   },
   "restore": {
     "serviceCountBefore": 60,

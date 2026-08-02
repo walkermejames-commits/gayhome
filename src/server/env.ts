@@ -3,7 +3,7 @@ import { z } from "zod";
 const optionalText = z.preprocess((value) => value === "" ? undefined : value, z.string().trim().min(1).optional());
 
 const environmentSchema = z.object({
-  APP_ENV: z.enum(["development", "test", "staging", "production"]).default("development"),
+  APP_ENV: z.enum(["development", "test", "pilot", "staging", "production"]).default("development"),
   APP_BASE_URL: z.url().default("http://localhost:3000"),
   DATABASE_URL: z.preprocess((value) => value === "" ? undefined : value, z.string().url().refine((value) => value.startsWith("postgresql://") || value.startsWith("postgres://"), "DATABASE_URL must use PostgreSQL").optional()),
   DATABASE_SSL_MODE: z.enum(["disable", "prefer", "require", "verify-full"]).default("disable"),
@@ -25,6 +25,9 @@ const environmentSchema = z.object({
   MAIL_SENDING_ENABLED: z.enum(["true", "false"]).default("false"),
   EVIDENCE_001_APPROVED: z.enum(["true", "false"]).default("false"),
   MAIL_001_APPROVED: z.enum(["true", "false"]).default("false"),
+  PILOT_ACTIVATION_ENABLED: z.enum(["true", "false"]).default("false"),
+  PRODUCTION_ACTIVATION_ENABLED: z.enum(["true", "false"]).default("false"),
+  EXTERNAL_NOTIFICATIONS_ENABLED: z.enum(["true", "false"]).default("false"),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });
 
@@ -55,8 +58,11 @@ export function assertDeploymentEnvironment(): AppEnvironment {
   ].filter(Boolean);
   if (missing.length > 0) throw new Error(`Deployment is blocked: missing ${missing.join(", ")}.`);
   if (environment.APP_ENV === "production" && environment.APP_BASE_URL.startsWith("http://")) throw new Error("Deployment is blocked: production APP_BASE_URL must use HTTPS.");
-  if ((environment.APP_ENV === "staging" || environment.APP_ENV === "production") && environment.AUTH_TEST_MODE === "true") throw new Error("Deployment is blocked: AUTH_TEST_MODE is forbidden outside development and test.");
+  if ((environment.APP_ENV === "pilot" || environment.APP_ENV === "staging" || environment.APP_ENV === "production") && environment.AUTH_TEST_MODE === "true") throw new Error("Deployment is blocked: AUTH_TEST_MODE is forbidden outside development and test.");
   if (environment.EVIDENCE_STORAGE_ENABLED === "true" && (environment.EVIDENCE_001_APPROVED !== "true" || !environment.OBJECT_STORAGE_ENDPOINT || !environment.OBJECT_STORAGE_BUCKET || !environment.MALWARE_SCANNER_ENDPOINT)) throw new Error("Deployment is blocked: evidence storage requires EVIDENCE-001 approval, object storage and malware scanning.");
   if (environment.MAIL_SENDING_ENABLED === "true" && (environment.MAIL_001_APPROVED !== "true" || !environment.MAIL_PROVIDER)) throw new Error("Deployment is blocked: external mail requires MAIL-001 approval and an approved provider.");
+  if (environment.PILOT_ACTIVATION_ENABLED === "true" && environment.APP_ENV !== "pilot") throw new Error("Deployment is blocked: pilot activation is permitted only in the pilot environment.");
+  if (environment.PRODUCTION_ACTIVATION_ENABLED === "true") throw new Error("Deployment is blocked: production activation cannot be enabled by application configuration.");
+  if (environment.EXTERNAL_NOTIFICATIONS_ENABLED === "true" && environment.MAIL_SENDING_ENABLED !== "true") throw new Error("Deployment is blocked: external notifications require the separately approved mail delivery control.");
   return environment;
 }
