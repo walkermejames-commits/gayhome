@@ -6,18 +6,18 @@
   "gates": [
     {
       "id": "PHASE4-INTEGRATION-001",
-      "description": "Phase 4 requires an immutable, reviewed completion commit available from the canonical repository before Phase 5 pilot work.",
+      "description": "Phase 4 immutable completion commit is available; independent integration review remains required before pilot activation.",
       "originPhase": "Phase 5",
       "riskCategory": "Integration and release integrity",
       "owner": "Unassigned Phase 4 release owner",
-      "status": "Blocked",
+      "status": "Awaiting independent review",
       "acceptanceCriteria": "Exact Phase 4 scope is reviewed; an authorised commit exists; its Phase 3 merge base is recorded; it is available remotely; full verification passes against that ref.",
       "evidenceLocation": ["docs/phase-5/PHASE4_INTEGRATION_BLOCKER.md", "docs/phase-5/PHASE5_READINESS_REPORT.md"],
       "reviewer": null,
       "dateOpened": "2026-08-02",
       "dateTechnicallyCompleted": null,
       "dateApproved": null,
-      "remainingActions": "Confirm the local commit and Phase 3 parent, rerun readiness checks, obtain separate push authorisation, publish the immutable ref, and complete independent review.",
+      "remainingActions": "Complete independent review of Phase 4 commit 31670854efa1f872125dda0f00543d684bc97a42 and record an authorised integration decision.",
       "pilotImpact": "Blocks every pilot cohort.",
       "productionImpact": "Blocks production release.",
       "regionalExpansionImpact": "Blocks using Phase 4 as an expansion baseline."
@@ -291,6 +291,13 @@
       "pilotImpact": "Kent pilot scope must exclude Sussex routing.",
       "productionImpact": "Sussex content must remain unavailable in Kent production.",
       "regionalExpansionImpact": "Blocks every Sussex launch."
-    }
+    },
+    {"id":"PHASE5-PILOT-001","description":"Pilot configuration and activation controls require verification.","originPhase":"Phase 5","riskCategory":"Pilot safety","owner":"Unassigned pilot owner","status":"Open","acceptanceCriteria":"Pilot, cohort, limit, owner, flag and preflight journeys pass independently.","evidenceLocation":["scripts/test-phase5-operations.ts","docs/phase-5/PILOT_OPERATING_MODEL.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Independent review and human approval.","pilotImpact":"Blocks activation.","productionImpact":"Required evidence for launch.","regionalExpansionImpact":"Repeat per region."},
+    {"id":"PHASE5-SUPPORT-001","description":"Support ownership and accessible routes require approval.","originPhase":"Phase 5","riskCategory":"Support and safeguarding","owner":"Unassigned support owner","status":"Open","acceptanceCriteria":"Named cover, deadlines and escalation are exercised.","evidenceLocation":["docs/phase-5/PILOT_SUPPORT_RUNBOOK.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Assign support cover and run an exercise.","pilotImpact":"Blocks participant cohorts.","productionImpact":"Blocks launch.","regionalExpansionImpact":"Local coverage required."},
+    {"id":"PHASE5-INCIDENT-001","description":"Incident containment and rollback require exercise.","originPhase":"Phase 5","riskCategory":"Operational resilience","owner":"Unassigned incident commander","status":"Open","acceptanceCriteria":"P0/P1 tabletop and shutdown controls pass with accountable owners.","evidenceLocation":["docs/phase-5/INCIDENT_RESPONSE_RUNBOOK.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Assign commander and exercise runbooks.","pilotImpact":"Blocks activation.","productionImpact":"Blocks launch.","regionalExpansionImpact":"Repeat after material changes."},
+    {"id":"PHASE5-ANALYTICS-001","description":"Aggregate reporting privacy requires independent review.","originPhase":"Phase 5","riskCategory":"Reporting privacy","owner":"Unassigned privacy owner","status":"Open","acceptanceCriteria":"Small-cell suppression and report dimensions receive approval.","evidenceLocation":["docs/phase-5/OUTCOME_MEASUREMENT.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete privacy review.","pilotImpact":"Blocks external reporting.","productionImpact":"Blocks public reporting.","regionalExpansionImpact":"Review regional dimensions."},
+    {"id":"PHASE5-PARTNER-001","description":"Partner access and correction boundaries require independent review.","originPhase":"Phase 5","riskCategory":"Third-party access","owner":"Unassigned partner owner","status":"Open","acceptanceCriteria":"Partner scope, training, suspension and proposal-only publishing controls pass.","evidenceLocation":["docs/phase-5/PARTNER_ONBOARDING.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Independent access review and partner agreements.","pilotImpact":"Partner portal disabled.","productionImpact":"Blocks partner launch.","regionalExpansionImpact":"Separate onboarding required."},
+    {"id":"PHASE5-LAUNCH-001","description":"Production launch requires formal accountable approval.","originPhase":"Phase 5","riskCategory":"Production launch","owner":"Unassigned accountable executive","status":"Blocked","acceptanceCriteria":"Every critical checklist item and production gate is approved.","evidenceLocation":["docs/phase-5/LAUNCH_READINESS.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete every unresolved gate; do not launch.","pilotImpact":"Does not authorise pilot.","productionImpact":"Blocks production.","regionalExpansionImpact":"Blocks regional launch."},
+    {"id":"PHASE5-INTEGRATION-001","description":"Phase 5 requires independent branch review and approved merge.","originPhase":"Phase 5","riskCategory":"Integration integrity","owner":"Unassigned release owner","status":"Open","acceptanceCriteria":"Committed implementation is reviewed, findings resolved and merge verified.","evidenceLocation":["docs/phase-5/PHASE5_IMPLEMENTATION_REPORT.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete implementation, independent review and authorised merge.","pilotImpact":"Blocks activation.","productionImpact":"Blocks production.","regionalExpansionImpact":"Blocks reuse as an approved baseline."}
   ]
 }

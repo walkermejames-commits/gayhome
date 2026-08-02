@@ -1,0 +1,11 @@
+import { execFileSync } from "node:child_process";import { withClient,migrationStatus } from "./lib/database.mjs";
+const pilotArgumentIndex=process.argv.indexOf("--pilot");const pilotId=pilotArgumentIndex>=0?process.argv[pilotArgumentIndex+1]:undefined;const blockers:string[]=[];
+const branch=execFileSync("git",["branch","--show-current"],{encoding:"utf8"}).trim();const commit=execFileSync("git",["rev-parse","HEAD"],{encoding:"utf8"}).trim();
+if(!branch.startsWith("codex/phase5-"))blockers.push("Current branch is not a dedicated Phase 5 branch.");
+if(process.env.PILOT_ACTIVATION_ENABLED!=="true")blockers.push("PILOT_ACTIVATION_ENABLED is false.");
+if(process.env.APP_ENV!=="pilot")blockers.push("APP_ENV is not pilot.");
+if(process.env.PRODUCTION_ACTIVATION_ENABLED==="true")blockers.push("Production activation configuration is unsafe.");
+if(!pilotId)blockers.push("A pilot ID must be supplied with --pilot.");
+if(!process.env.DATABASE_URL)blockers.push("DATABASE_URL is missing.");
+if(process.env.DATABASE_URL&&pilotId)await withClient(async client=>{const migrations=await migrationStatus(client);for(const migration of migrations)if(migration.state!=="applied")blockers.push(`${migration.filename} is ${migration.state}.`);const dataset=await client.query("SELECT status,integrity_passed FROM dataset_revisions WHERE is_active=true ORDER BY created_at DESC LIMIT 1");if(!dataset.rowCount||dataset.rows[0].status!=="published"||!dataset.rows[0].integrity_passed)blockers.push("Active dataset is not published with passing integrity.");const flags=await client.query("SELECT id FROM pilot_feature_flags WHERE default_state<>false");if(flags.rowCount)blockers.push("One or more feature flags do not default to disabled.");const {pilotPreflight}=await import("../src/server/pilot-operations");const result=await pilotPreflight(pilotId);if(!result)blockers.push("Pilot was not found.");else blockers.push(...result.blockers);});
+const report={phase5Preflight:blockers.length?"blocked":"ready",branch,commit,pilotId:pilotId??null,blockers:[...new Set(blockers)],activatesNothing:true,checkedAt:new Date().toISOString()};console.log(JSON.stringify(report,null,2));if(blockers.length)process.exit(1);

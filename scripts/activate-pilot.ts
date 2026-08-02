@@ -1,0 +1,2 @@
+import { activatePilot } from "../src/server/pilot-operations";import { closePool } from "../src/server/db/pool";
+const pilotId=process.env.PILOT_ID,actorId=process.env.ACTIVATION_ACTOR_USER_ID;if(!pilotId||!actorId)throw new Error("PILOT_ID and ACTIVATION_ACTOR_USER_ID are required.");if(process.env.APP_ENV==="production")throw new Error("Production activation is never available through this command.");try{const result=await activatePilot(actorId,pilotId);console.log(JSON.stringify(result,null,2));}finally{await closePool();}
