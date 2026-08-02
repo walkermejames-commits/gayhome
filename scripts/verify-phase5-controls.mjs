@@ -4,7 +4,7 @@ const migration=await fs.readFile("migrations/0005_phase5_pilot_operations.sql",
 const down=await fs.readFile("migrations/down/0005_phase5_pilot_operations.down.sql","utf8");
 const matrix=JSON.parse(await fs.readFile("docs/phase-5/PILOT_FEATURE_FLAG_MATRIX.json","utf8"));
 const register=JSON.parse(await fs.readFile("docs/phase-5/RELEASE_GATE_REGISTER.json","utf8"));
-const requiredFlags=["pilot.registration","pilot.accounts","pilot.profiles","pilot.cases","pilot.evidence","pilot.advocates","pilot.professionals","pilot.external_email","pilot.notifications","pilot.feedback","pilot.analytics","pilot.partner_portal","production.public_access"];
+const requiredFlags=["pilot.registration","pilot.accounts","pilot.profiles","pilot.cases","pilot.evidence","pilot.advocates","pilot.professionals","pilot.external_email","pilot.direct_council_submission","pilot.ai_case_summaries","pilot.notifications","pilot.feedback","pilot.analytics","pilot.partner_portal","pilot.provider_correction_portal","production.public_access"];
 const requiredGates=["PHASE5-PILOT-001","PHASE5-SUPPORT-001","PHASE5-INCIDENT-001","PHASE5-ANALYTICS-001","PHASE5-PARTNER-001","PHASE5-LAUNCH-001","PHASE5-INTEGRATION-001"];
 const failures=[];
 for(const flag of requiredFlags){if(!migration.includes(`('${flag}'`))failures.push(`Migration does not seed ${flag}.`);const configured=matrix.flags?.find(item=>item.key===flag);if(!configured)failures.push(`Flag matrix does not contain ${flag}.`);else if(configured.default!==false)failures.push(`${flag} does not default to false.`);}

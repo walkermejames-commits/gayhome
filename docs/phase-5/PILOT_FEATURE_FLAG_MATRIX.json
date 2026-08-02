@@ -11,10 +11,13 @@
     {"key":"pilot.advocates","default":false,"requiredGates":["SHARE-001"]},
     {"key":"pilot.professionals","default":false,"requiredGates":["PHASE5-PARTNER-001","SHARE-001"]},
     {"key":"pilot.external_email","default":false,"requiredGates":["MAIL-001"]},
+    {"key":"pilot.direct_council_submission","default":false,"requiredGates":["MAIL-001","PDF-001","GOV-001","PENTEST-001"]},
+    {"key":"pilot.ai_case_summaries","default":false,"requiredGates":["GOV-001","PENTEST-001"]},
     {"key":"pilot.notifications","default":false,"requiredGates":["MAIL-001"]},
     {"key":"pilot.feedback","default":false,"requiredGates":["PHASE5-SUPPORT-001","GOV-001"]},
     {"key":"pilot.analytics","default":false,"requiredGates":["PHASE5-ANALYTICS-001"]},
     {"key":"pilot.partner_portal","default":false,"requiredGates":["PHASE5-PARTNER-001"]},
+    {"key":"pilot.provider_correction_portal","default":false,"requiredGates":["PHASE5-PARTNER-001","DATA-001"]},
     {"key":"production.public_access","default":false,"requiredGates":["PHASE5-LAUNCH-001"],"apiEnableAllowed":false}
   ]
 }

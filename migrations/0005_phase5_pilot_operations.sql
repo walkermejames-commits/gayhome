@@ -524,10 +524,13 @@ INSERT INTO pilot_feature_flags (id,description,environment,default_state,curren
   ('pilot.advocates','Advocate invitations','pilot',false,false,'critical','SHARE-001 approval',ARRAY['SHARE-001']),
   ('pilot.professionals','Professional accounts','pilot',false,false,'critical','Partner and sharing approval',ARRAY['PHASE5-PARTNER-001','SHARE-001']),
   ('pilot.external_email','External email delivery','pilot',false,false,'critical','MAIL-001 approval and provider',ARRAY['MAIL-001']),
+  ('pilot.direct_council_submission','Direct council submission','pilot',false,false,'critical','Mail, PDF, governance and penetration-test approval',ARRAY['MAIL-001','PDF-001','GOV-001','PENTEST-001']),
+  ('pilot.ai_case_summaries','AI-generated case summaries','pilot',false,false,'critical','Governance, privacy and penetration-test approval',ARRAY['GOV-001','PENTEST-001']),
   ('pilot.notifications','External notifications','pilot',false,false,'high','MAIL-001 approval and explicit preferences',ARRAY['MAIL-001']),
   ('pilot.feedback','Pilot feedback','pilot',false,false,'medium','Support and governance approval',ARRAY['PHASE5-SUPPORT-001','GOV-001']),
   ('pilot.analytics','Privacy-safe pilot analytics','pilot',false,false,'high','Analytics privacy approval',ARRAY['PHASE5-ANALYTICS-001']),
   ('pilot.partner_portal','Partner portal','pilot',false,false,'critical','Partner independent review',ARRAY['PHASE5-PARTNER-001']),
+  ('pilot.provider_correction_portal','Provider correction portal','pilot',false,false,'critical','Partner and data-verification approval',ARRAY['PHASE5-PARTNER-001','DATA-001']),
   ('production.public_access','Production public access','production',false,false,'critical','Formal production launch approval',ARRAY['PHASE5-LAUNCH-001']);
 
 COMMIT;
