@@ -1,0 +1,20 @@
+{
+  "status": "template-only",
+  "entryGate": "PHASE4-INTEGRATION-001",
+  "defaultPolicy": "deny",
+  "flags": [
+    {"key": "pilot.account_creation", "default": false, "requiredGates": ["PHASE4-INTEGRATION-001", "AUTH-001", "GOV-001"], "minimumCohort": 1},
+    {"key": "pilot.persistent_profiles", "default": false, "requiredGates": ["AUTH-001", "GOV-001", "RETENTION-001"], "minimumCohort": 3},
+    {"key": "pilot.evidence_uploads", "default": false, "requiredGates": ["EVIDENCE-001", "AUTH-001", "RETENTION-001", "PENTEST-001"], "minimumCohort": 3},
+    {"key": "pilot.external_email", "default": false, "requiredGates": ["MAIL-001", "GOV-001", "PENTEST-001"], "minimumCohort": 3},
+    {"key": "pilot.advocate_invitations", "default": false, "requiredGates": ["SHARE-001", "AUTH-001", "GOV-001"], "minimumCohort": 3},
+    {"key": "pilot.professional_accounts", "default": false, "requiredGates": ["AUTH-001", "SHARE-001", "GOV-001", "SAFEGUARD-001"], "minimumCohort": 3},
+    {"key": "pilot.external_case_packs", "default": false, "requiredGates": ["PDF-001", "SHARE-001", "GOV-001"], "minimumCohort": 3},
+    {"key": "pilot.ai_summaries", "default": false, "requiredGates": ["GOV-001", "PENTEST-001"], "minimumCohort": 5},
+    {"key": "pilot.notifications", "default": false, "requiredGates": ["MAIL-001", "AUTH-001", "GOV-001"], "minimumCohort": 3},
+    {"key": "pilot.provider_referrals", "default": false, "requiredGates": ["DATA-001", "MAIL-001", "GOV-001"], "minimumCohort": 4},
+    {"key": "pilot.direct_submissions", "default": false, "requiredGates": ["MAIL-001", "PDF-001", "GOV-001", "PENTEST-001"], "minimumCohort": 5},
+    {"key": "pilot.kent_availability", "default": false, "requiredGates": ["DATA-001", "DEPLOY-001", "ACCESS-001", "SAFEGUARD-001"], "minimumCohort": 1},
+    {"key": "pilot.sussex_availability", "default": false, "requiredGates": ["SUSSEX-DATA-001"], "minimumCohort": null}
+  ]
+}
