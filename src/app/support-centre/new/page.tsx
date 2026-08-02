@@ -1,0 +1,1 @@
+import { SupportTicketForm } from "@/components/operational-forms";export default function Page(){return <><h1>Report a problem</h1><p className="lede">Guest submissions are available. Choose a safe contact only if you want a reply.</p><SupportTicketForm/></>}

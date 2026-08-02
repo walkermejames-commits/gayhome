@@ -1,0 +1,1 @@
+import { SupportTicketForm } from "@/components/operational-forms";export default function Page(){return <><h1>Accessibility support</h1><p className="lede">Request another format, report a barrier, or tell us which adjustment would help.</p><SupportTicketForm defaultCategory="accessibility"/></>}

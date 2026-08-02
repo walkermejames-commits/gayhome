@@ -1,0 +1,1 @@
+import { SupportTicketForm } from "@/components/operational-forms";export default function Page(){return <><h1>Privacy support</h1><p className="lede">Raise a privacy concern or ask how to use your information rights.</p><SupportTicketForm defaultCategory="privacy"/></>}

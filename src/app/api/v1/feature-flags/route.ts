@@ -1,0 +1,2 @@
+import type { NextRequest } from "next/server";import { NextResponse } from "next/server";import { requireOperationalActor } from "@/server/operations-auth";import { listFeatureFlags } from "@/server/pilot-operations";
+export async function GET(request:NextRequest){const actor=await requireOperationalActor(request,["pilot_administrator","incident_commander","release_manager"]);if(actor instanceof Response)return actor;return NextResponse.json({flags:await listFeatureFlags()});}

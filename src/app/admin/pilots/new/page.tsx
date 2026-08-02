@@ -1,0 +1,2 @@
+import { CreatePilotForm } from "@/components/operational-forms";import { SecureOperationalWorkspace } from "@/components/secure-operational-workspace";
+export default function Page(){return <SecureOperationalWorkspace roles={["pilot_administrator"]} title="Create a pilot" intro="Create a disabled draft. Activation is a separate, gated action and is unavailable in local development."><CreatePilotForm/></SecureOperationalWorkspace>}

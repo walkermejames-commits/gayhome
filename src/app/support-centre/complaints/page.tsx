@@ -1,0 +1,1 @@
+import { SupportTicketForm } from "@/components/operational-forms";export default function Page(){return <><h1>Make a complaint</h1><p className="lede">You may complain anonymously. If you want status updates, provide a safe contact or sign in.</p><SupportTicketForm defaultCategory="complaint"/></>}

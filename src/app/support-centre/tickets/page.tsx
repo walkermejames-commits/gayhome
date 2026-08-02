@@ -1,0 +1,1 @@
+import Link from "next/link";export default function Page(){return <><h1>Your support requests</h1><p>Sign in to see non-anonymous requests linked to your account. Anonymous requests cannot be linked back to you.</p><Link href="/profile">Sign in safely</Link></>}
