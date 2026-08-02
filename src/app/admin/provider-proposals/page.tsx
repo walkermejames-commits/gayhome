@@ -1,0 +1,1 @@
+import { Phase6AdminWorkspace } from "@/components/phase6-workspaces";export default function Page(){return <Phase6AdminWorkspace title="Provider proposals" intro="Review proposed changes before they can enter a future dataset revision."><p>Direct provider publication is denied. Emergency hides require a reason, preserve history and remain reviewable.</p></Phase6AdminWorkspace>}

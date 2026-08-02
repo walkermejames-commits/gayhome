@@ -1,0 +1,1 @@
+import { PartnerWorkspace } from "@/components/phase6-workspaces";export default function Page(){return <PartnerWorkspace title="Managed services" intro="View only the public service records assigned to your organisation."><p>Editing is staged as a proposal. No case or user data is available here.</p></PartnerWorkspace>}

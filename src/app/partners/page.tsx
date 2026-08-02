@@ -1,0 +1,1 @@
+import { PartnerWorkspace } from "@/components/phase6-workspaces";export default function Page(){return <PartnerWorkspace title="Partner workspace" intro="Verified partners can manage their own organisation’s draft service information."><p>Partner access is organisation-scoped and never confers private case access.</p></PartnerWorkspace>}

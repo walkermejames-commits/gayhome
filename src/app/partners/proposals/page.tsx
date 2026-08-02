@@ -1,0 +1,1 @@
+import { PartnerWorkspace } from "@/components/phase6-workspaces";export default function Page(){return <PartnerWorkspace title="Change proposals" intro="Submit evidence-backed corrections for controlled review."><p>Proposals move through submitted, review and revision states. Only a separate publisher role can publish an approved dataset revision.</p></PartnerWorkspace>}

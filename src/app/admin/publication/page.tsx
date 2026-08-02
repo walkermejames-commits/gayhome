@@ -1,0 +1,2 @@
+import { Phase6AdminWorkspace } from "@/components/phase6-workspaces";import { publicationStages } from "@/phase6/publication";
+export default function Page(){return <Phase6AdminWorkspace title="Regional publication" intro="All fifteen mandatory stages require evidence and an owner."><ol>{publicationStages.map((stage)=><li key={stage}>{stage.replaceAll("_"," ")}</li>)}</ol></Phase6AdminWorkspace>}
