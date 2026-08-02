@@ -1,0 +1,1 @@
+import Link from "next/link";export default function Page(){return <><h1>Offline settings</h1><p className="lede">Private information is never offered for offline storage.</p><p className="callout">Installation, background sync and push notifications are disabled pending privacy review.</p><Link href="/offline-help">Open low-bandwidth public help</Link></>}
