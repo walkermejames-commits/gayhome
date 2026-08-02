@@ -20,6 +20,7 @@
     "db:seed": "tsx scripts/seed-postgres.ts",
     "db:test:deploy": "tsx scripts/test-postgres-deploy.ts",
     "test:phase3": "tsx scripts/test-phase3-casework.ts",
+    "test:phase6": "tsx scripts/test-phase6-platform.ts",
     "release:check": "node scripts/release-gates.mjs",
     "import:datasets": "tsx scripts/import-datasets.ts",
     "audit:dataset": "node scripts/audit-revision.mjs",

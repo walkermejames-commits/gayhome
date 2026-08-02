@@ -1,0 +1,11 @@
+{
+  "format": "navigator-regional-import-v1",
+  "region": "sussex",
+  "status": "template_only",
+  "publicationAllowed": false,
+  "schema": "templates/sussex-import.schema.json",
+  "workbook": "templates/sussex-import-template.xlsx",
+  "tables": ["services", "councils", "triage_routes", "scripts", "evidence_checklists", "sources", "regional_metadata", "governance_ownership", "verification_assignments"],
+  "requiredGate": "SUSSEX-DATA-001",
+  "realRecords": 0
+}

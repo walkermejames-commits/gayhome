@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-08-02T06:24:22.024Z",
+  "syntheticOnly": true,
+  "emptyDatabase": {
+    "applied": true,
+    "rolledBack": true,
+    "phase3TablesPreserved": true
+  },
+  "existingPhase3": {
+    "tested": true
+  },
+  "phase4": {
+    "tested": false,
+    "reason": "No Phase 4 reference was available in fetched repository refs."
+  },
+  "seededKent": {
+    "before": {
+      "services": 60,
+      "cases": 1,
+      "permissions": 1
+    },
+    "regionalRevision": {
+      "public_status": "published",
+      "revision": "v1.0.1"
+    },
+    "featureFlags": {
+      "total": 10,
+      "enabled": 0
+    },
+    "partnerCaseForeignKeys": 0
+  },
+  "rollback": {
+    "after": {
+      "services": 60,
+      "cases": 1,
+      "permissions": 1
+    },
+    "preserved": true
+  },
+  "reapplication": {
+    "passed": true
+  },
+  "passed": true
+}
