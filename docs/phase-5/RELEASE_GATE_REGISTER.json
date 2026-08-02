@@ -298,6 +298,27 @@
     {"id":"PHASE5-ANALYTICS-001","description":"Aggregate reporting privacy requires independent review.","originPhase":"Phase 5","riskCategory":"Reporting privacy","owner":"Unassigned privacy owner","status":"Open","acceptanceCriteria":"Small-cell suppression and report dimensions receive approval.","evidenceLocation":["docs/phase-5/OUTCOME_MEASUREMENT.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete privacy review.","pilotImpact":"Blocks external reporting.","productionImpact":"Blocks public reporting.","regionalExpansionImpact":"Review regional dimensions."},
     {"id":"PHASE5-PARTNER-001","description":"Partner access and correction boundaries require independent review.","originPhase":"Phase 5","riskCategory":"Third-party access","owner":"Unassigned partner owner","status":"Open","acceptanceCriteria":"Partner scope, training, suspension and proposal-only publishing controls pass.","evidenceLocation":["docs/phase-5/PARTNER_ONBOARDING.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Independent access review and partner agreements.","pilotImpact":"Partner portal disabled.","productionImpact":"Blocks partner launch.","regionalExpansionImpact":"Separate onboarding required."},
     {"id":"PHASE5-LAUNCH-001","description":"Production launch requires formal accountable approval.","originPhase":"Phase 5","riskCategory":"Production launch","owner":"Unassigned accountable executive","status":"Blocked","acceptanceCriteria":"Every critical checklist item and production gate is approved.","evidenceLocation":["docs/phase-5/LAUNCH_READINESS.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete every unresolved gate; do not launch.","pilotImpact":"Does not authorise pilot.","productionImpact":"Blocks production.","regionalExpansionImpact":"Blocks regional launch."},
-    {"id":"PHASE5-INTEGRATION-001","description":"Phase 5 requires independent branch review and approved merge.","originPhase":"Phase 5","riskCategory":"Integration integrity","owner":"Unassigned release owner","status":"Open","acceptanceCriteria":"Committed implementation is reviewed, findings resolved and merge verified.","evidenceLocation":["docs/phase-5/PHASE5_IMPLEMENTATION_REPORT.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete implementation, independent review and authorised merge.","pilotImpact":"Blocks activation.","productionImpact":"Blocks production.","regionalExpansionImpact":"Blocks reuse as an approved baseline."}
+    {"id":"PHASE5-INTEGRATION-001","description":"Phase 5 requires independent branch review and approved merge.","originPhase":"Phase 5","riskCategory":"Integration integrity","owner":"Unassigned release owner","status":"Open","acceptanceCriteria":"Committed implementation is reviewed, findings resolved and merge verified.","evidenceLocation":["docs/phase-5/PHASE5_IMPLEMENTATION_REPORT.md"],"reviewer":null,"dateOpened":"2026-08-02","dateTechnicallyCompleted":null,"dateApproved":null,"remainingActions":"Complete implementation, independent review and authorised merge.","pilotImpact":"Blocks activation.","productionImpact":"Blocks production.","regionalExpansionImpact":"Blocks reuse as an approved baseline."},
+    {
+      "id": "PHASE6-INTEGRATION-001",
+      "description": "Phase 6 cannot be integrated until its authoritative implementation source is available from the canonical repository.",
+      "originPhase": "Phase 6",
+      "riskCategory": "Integration provenance",
+      "owner": "Unassigned Phase 6 release owner",
+      "status": "Blocked",
+      "acceptanceCriteria": "An authoritative Phase 6 branch, commit, tag or pull request is identified on the canonical remote; its provenance and parentage are verified against the Phase 5 baseline; the supplied implementation is integrated, tested, independently reviewed and approved.",
+      "evidenceLocation": [
+        "docs/integration/PHASE6_INTEGRATION_BASELINE.md",
+        "docs/integration/PHASE6_INTEGRATION_BLOCKER.md"
+      ],
+      "reviewer": null,
+      "dateOpened": "2026-08-02",
+      "dateTechnicallyCompleted": null,
+      "dateApproved": null,
+      "remainingActions": "Publish the authoritative Phase 6 implementation to the canonical remote or provide an exact reachable ref. Resume from source verification; do not reconstruct Phase 6 from planning material.",
+      "pilotImpact": "Blocks any Phase 6 pilot capability or activation.",
+      "productionImpact": "Blocks production use of any claimed Phase 6 capability.",
+      "regionalExpansionImpact": "Blocks Phase 6 regional expansion, including publication of Sussex operational content."
+    }
   ]
 }
