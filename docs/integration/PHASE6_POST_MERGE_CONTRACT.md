@@ -5,7 +5,7 @@
 | Integration branch | `codex/phase6-integration` |
 | Baseline commit | `15bf783455d9c84f630fbfd5dbf0c099601a32f0` |
 | Phase 6 source commit | `2f8183c0b4e64423b8115fbbd3c7e96748ae9a96` |
-| Integration implementation commit | Recorded after the merge commit is created |
+| Integration implementation commit | `4198314507db053af13aadecc38c03db3ae1d881` |
 | Migration level | `0006_phase6_platform_expansion.sql` |
 | Active dataset revision | `v1.0.1` |
 

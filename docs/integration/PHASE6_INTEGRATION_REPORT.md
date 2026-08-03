@@ -4,6 +4,8 @@
 
 Authoritative Phase 6 commit `2f8183c0b4e64423b8115fbbd3c7e96748ae9a96` was merged into the verified Phase 5 baseline `15bf783455d9c84f630fbfd5dbf0c099601a32f0` on `codex/phase6-integration`. Six textual conflicts were resolved, the migration was renumbered/reconciled, partner models were unified, backup/restore was extended, Phase 6 gates were added to the canonical register, and CI was extended.
 
+The integration implementation merge is `4198314507db053af13aadecc38c03db3ae1d881`, with parents `8f725837ebfcac90137409e039fb3c3baca30a6d` and `2f8183c0b4e64423b8115fbbd3c7e96748ae9a96`.
+
 ## Inventory
 
 - Regional resolver, identifiers, publication workflow, verification scheduling, change-impact analysis, taxonomy/search explanations and privacy-safe reporting domain modules.
