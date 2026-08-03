@@ -18,6 +18,8 @@ jobs:
       - run: pnpm test:phase3
       - run: pnpm test:phase4:integration
       - run: pnpm test:phase5
+      - run: pnpm test:phase6
+      - run: pnpm verify:sussex-template
       - run: pnpm phase5:verify-controls
       - run: pnpm release:dry-run
       - run: pnpm secret:scan

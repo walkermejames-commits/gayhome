@@ -35,11 +35,14 @@ try {
   client = postgres.getPgClient();
   await client.connect();
   const migrationResult = await applyMigrations(client);
-  const integrationMigrations = ["0003_phase3_casework.sql", "0004_phase4_access_hardening.sql", "0005_phase5_pilot_operations.sql"];
+  const integrationMigrations = ["0003_phase3_casework.sql", "0004_phase4_access_hardening.sql", "0005_phase5_pilot_operations.sql", "0006_phase6_platform_expansion.sql"];
   const baselineMigrationCount = (await client.query("SELECT count(*)::int AS count FROM schema_migrations WHERE filename <> ALL($1::text[])", [integrationMigrations])).rows[0]?.count;
+  const phase6DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0006_phase6_platform_expansion.down.sql"), "utf8");
   const phase5DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0005_phase5_pilot_operations.down.sql"), "utf8");
   const phase4DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0004_phase4_access_hardening.down.sql"), "utf8");
   const phase3DownSql = await fs.readFile(path.join(process.cwd(), "migrations", "down", "0003_phase3_casework.down.sql"), "utf8");
+  await client.query(phase6DownSql);
+  const phase6RolledBack = (await client.query("SELECT to_regclass('public.regions') IS NULL AS removed")).rows[0]?.removed === true;
   await client.query(phase5DownSql);
   await client.query(phase4DownSql);
   await client.query(phase3DownSql);
@@ -52,6 +55,8 @@ try {
   const preUpgradeCounts = (await client.query("SELECT (SELECT count(*)::int FROM services) services, (SELECT count(*)::int FROM councils) councils, (SELECT count(*)::int FROM dataset_revisions) revisions")).rows[0];
   const reappliedMigrations = await applyMigrations(client);
   const reapplied = integrationMigrations.every((filename) => reappliedMigrations.find((item) => item.filename === filename)?.state === "applied");
+  const phase6Flags = (await client.query("SELECT count(*)::int AS total, count(*) FILTER (WHERE default_state)::int AS enabled FROM phase6_feature_flags")).rows[0];
+  const phase6DefaultDisabled = phase6Flags?.total === 10 && phase6Flags?.enabled === 0;
   const postUpgradeCounts = (await client.query("SELECT (SELECT count(*)::int FROM services) services, (SELECT count(*)::int FROM councils) councils, (SELECT count(*)::int FROM dataset_revisions) revisions")).rows[0];
   const existingDataSurvived = JSON.stringify(preUpgradeCounts) === JSON.stringify(postUpgradeCounts);
   const secondSeed = await seedCatalog(client, envelope);
@@ -89,11 +94,12 @@ try {
     canonicalParity,
     databaseHealth,
     canonicalDifferences: canonicalParity ? [] : reconcileCatalogs(envelope.catalog, databaseCatalog).slice(0, 20),
-    migrationLifecycle: { rolledBack, preservedBaselineMigrations, phase2SeededBeforeUpgrade: firstSeed.status === "published", existingDataSurvived, preUpgradeCounts, postUpgradeCounts, reapplied },
-    backup: { format: backup.format, tableCount: Object.keys(backup.tables).length, phase3Included: Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "case_access_permissions"), phase5Included: Object.hasOwn(backup.tables, "pilot_programs") && Object.hasOwn(backup.tables, "operational_release_gates") },
+    migrationLifecycle: { rolledBack, phase6RolledBack, preservedBaselineMigrations, phase2SeededBeforeUpgrade: firstSeed.status === "published", existingDataSurvived, preUpgradeCounts, postUpgradeCounts, reapplied },
+    featureFlags: { phase6: phase6Flags, allDefaultsDisabled: phase6DefaultDisabled },
+    backup: { format: backup.format, tableCount: Object.keys(backup.tables).length, phase3Included: Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "case_access_permissions"), phase5Included: Object.hasOwn(backup.tables, "pilot_programs") && Object.hasOwn(backup.tables, "operational_release_gates"), phase6Included: Object.hasOwn(backup.tables, "regions") && Object.hasOwn(backup.tables, "phase6_feature_flags") },
     restore: { serviceCountBefore: preRestore.rows[0]?.count, serviceCountAfter: postRestore.rows[0]?.count, profileRestored: restoredProfile.rows[0]?.count === 1 },
     conflictingImport: { status: conflict.status, reconciliationItems: conflictRows.rows[0]?.count },
-    passed: migrationResult.every((item) => item.state === "applied") && rolledBack && preservedBaselineMigrations && existingDataSurvived && reapplied && Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "pilot_programs") && firstSeed.status === "published" && secondSeed.status === "idempotent" && canonicalParity && databaseHealth.connected && databaseHealth.migrationCurrent && databaseHealth.integrityPassed && preRestore.rows[0]?.count === postRestore.rows[0]?.count && restoredProfile.rows[0]?.count === 1 && conflict.status === "review_required" && conflictRows.rows[0]?.count === 1,
+    passed: migrationResult.every((item) => item.state === "applied") && rolledBack && phase6RolledBack && preservedBaselineMigrations && existingDataSurvived && reapplied && phase6DefaultDisabled && Object.hasOwn(backup.tables, "cases") && Object.hasOwn(backup.tables, "pilot_programs") && Object.hasOwn(backup.tables, "regions") && firstSeed.status === "published" && secondSeed.status === "idempotent" && canonicalParity && databaseHealth.connected && databaseHealth.migrationCurrent && databaseHealth.integrityPassed && preRestore.rows[0]?.count === postRestore.rows[0]?.count && restoredProfile.rows[0]?.count === 1 && conflict.status === "review_required" && conflictRows.rows[0]?.count === 1,
   };
   await fs.mkdir(artifactDir, { recursive: true });
   await fs.writeFile(path.join(artifactDir, "deploy-001-restore-report.json"), `${JSON.stringify(result, null, 2)}\n`);

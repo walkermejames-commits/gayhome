@@ -23,6 +23,8 @@
     "test:phase3": "tsx scripts/test-phase3-casework.ts",
     "test:phase4:integration": "tsx scripts/test-phase4-integration.ts",
     "test:phase5": "node --import tsx --conditions=react-server scripts/test-phase5-operations.ts",
+    "test:phase6": "tsx scripts/test-phase6-platform.ts",
+    "verify:sussex-template": "node scripts/verify-sussex-template.mjs",
     "phase5:verify-controls": "node scripts/verify-phase5-controls.mjs",
     "phase5:preflight": "node --import tsx --conditions=react-server scripts/phase5-readiness-preflight.ts",
     "pilot:activate": "node --import tsx --conditions=react-server scripts/activate-pilot.ts",

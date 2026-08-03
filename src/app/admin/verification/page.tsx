@@ -1,0 +1,2 @@
+import { Phase6AdminWorkspace } from "@/components/phase6-workspaces";import { verificationDimensions } from "@/phase6/verification";
+export default function Page(){return <Phase6AdminWorkspace title="Verification queue" intro="Risk-weighted public service reviews with separate confidence dimensions."><h2>Review dimensions</h2><ul>{verificationDimensions.map((item)=><li key={item}>{item.replaceAll("_"," ")}</li>)}</ul><p>No live provider data is connected.</p></Phase6AdminWorkspace>}

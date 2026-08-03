@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T07:10:20.157Z",
+  "generatedAt": "2026-08-03T06:00:23.720Z",
   "engine": "PostgreSQL 18 embedded test cluster",
   "migrations": [
     {
@@ -25,6 +25,11 @@
     {
       "filename": "0005_phase5_pilot_operations.sql",
       "sha256": "C74F8196884D168428C7D1C5ECFD91B2F16ECA693C4ECE659046EB2FA25867C9",
+      "state": "applied"
+    },
+    {
+      "filename": "0006_phase6_platform_expansion.sql",
+      "sha256": "CC2AD141BAF8C7BDDF7AB39FDDF1F6BEC9DFEC646A325F9C17D4290CA4E5959D",
       "state": "applied"
     }
   ],
@@ -67,6 +72,7 @@
   "canonicalDifferences": [],
   "migrationLifecycle": {
     "rolledBack": true,
+    "phase6RolledBack": true,
     "preservedBaselineMigrations": true,
     "phase2SeededBeforeUpgrade": true,
     "existingDataSurvived": true,
@@ -82,11 +88,19 @@
     },
     "reapplied": true
   },
+  "featureFlags": {
+    "phase6": {
+      "total": 10,
+      "enabled": 0
+    },
+    "allDefaultsDisabled": true
+  },
   "backup": {
     "format": "kent-navigator-logical-v1",
-    "tableCount": 82,
+    "tableCount": 118,
     "phase3Included": true,
-    "phase5Included": true
+    "phase5Included": true,
+    "phase6Included": true
   },
   "restore": {
     "serviceCountBefore": 60,

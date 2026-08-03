@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T06:51:57.955Z",
+  "generatedAt": "2026-08-03T06:01:15.748Z",
   "database": "PostgreSQL 18 isolated",
   "syntheticOnly": true,
   "personas": [
@@ -216,7 +216,7 @@
   ],
   "auditCount": 150,
   "sensitiveAuditLeak": 0,
-  "pdfBytes": 1649,
+  "pdfBytes": 1648,
   "security": {
     "crossUserDenied": true,
     "advocateLeastPrivilege": true,

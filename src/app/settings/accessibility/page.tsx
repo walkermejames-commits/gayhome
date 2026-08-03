@@ -1,0 +1,1 @@
+import { AccessibilityPreferencesForm } from "@/components/accessibility-preferences";export default function Page(){return <><h1>Accessibility preferences</h1><p className="lede">Choose how information is presented. No diagnosis is required.</p><AccessibilityPreferencesForm/></>}

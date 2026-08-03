@@ -1,0 +1,2 @@
+import { notFound } from "next/navigation";import { regionRegistry } from "@/phase6/regions";
+export default async function Page({params}:{params:Promise<{regionId:string}>}){const {regionId}=await params;const region=regionRegistry.find((item)=>item.id===regionId&&item.status==="published");if(!region)notFound();return <><h1>{region.name}</h1><p className="lede">Public information from the controlled {region.datasetRevision} dataset.</p><dl><dt>Jurisdiction</dt><dd>{region.jurisdiction}</dd><dt>Publication state</dt><dd>Published</dd></dl></>}

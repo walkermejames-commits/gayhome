@@ -1,0 +1,3 @@
+import { Phase6AdminWorkspace } from "@/components/phase6-workspaces";
+const checks=["Missing sources","Unresolved references","Overdue verification","Broken URLs","Conflicting reports","Untranslated critical content","Outdated Easy Read","Missing council route","Duplicate records","Suspended services still referenced"];
+export default function Page(){return <Phase6AdminWorkspace title="Data-quality dashboard" intro="Regional public-data issues only; no user or case information is queried."><table><caption>Quality checks awaiting connected data</caption><thead><tr><th scope="col">Check</th><th scope="col">State</th></tr></thead><tbody>{checks.map((check)=><tr key={check}><th scope="row">{check}</th><td>Review required</td></tr>)}</tbody></table></Phase6AdminWorkspace>}

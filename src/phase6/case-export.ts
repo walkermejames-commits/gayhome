@@ -1,0 +1,3 @@
+import { createHash } from "node:crypto";
+export type PortableCaseExport = { format: "navigator-internal-portable-case-v1"; sensitivity: "personal" | "sensitive" | "highly_sensitive"; datasetRevision: string; exportedAt: string; manifest: Record<string, unknown>; evidenceIndex: Array<{ id: string; included: boolean; checksum?: string }>; documentList: unknown[]; consentSummary: unknown[]; timeline: unknown[]; deadlines: unknown[]; references: string[]; checksum: string };
+export function createPortableCaseExport(payload: Omit<PortableCaseExport, "format" | "checksum">): PortableCaseExport { const serialised = JSON.stringify(payload); return { format: "navigator-internal-portable-case-v1", ...payload, checksum: createHash("sha256").update(serialised).digest("hex") }; }

@@ -1,1 +1,9 @@
-import { CorrectionProposalForm } from "@/components/operational-forms";import { SecureOperationalWorkspace } from "@/components/secure-operational-workspace";export default function Page(){return <SecureOperationalWorkspace roles={["partner_administrator","data_reviewer","pilot_administrator"]} title="Correction proposals" intro="Propose a controlled change. Reviewers verify evidence; partners never publish directly."><CorrectionProposalForm/></SecureOperationalWorkspace>}
+import { CorrectionProposalForm } from "@/components/operational-forms";
+import { PartnerWorkspace } from "@/components/phase6-workspaces";
+
+export default function Page() {
+  return <PartnerWorkspace title="Correction proposals" intro="Submit evidence-backed corrections for controlled review.">
+    <p>Proposals move through submitted, review and revision states. Only a separate publisher role can link an independently approved dataset revision.</p>
+    <CorrectionProposalForm />
+  </PartnerWorkspace>;
+}

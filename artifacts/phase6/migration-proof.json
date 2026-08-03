@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-08-03T05:56:32.666Z",
+  "syntheticOnly": true,
+  "integratedBaseline": {
+    "phase4Tested": true,
+    "phase5Tested": true,
+    "migration": "0006_phase6_platform_expansion.sql"
+  },
+  "seededKent": {
+    "before": {
+      "services": 60,
+      "cases": 1,
+      "permissions": 1,
+      "partners": 0
+    },
+    "regionalRevision": {
+      "public_status": "published",
+      "revision": "v1.0.1"
+    },
+    "featureFlags": {
+      "total": 10,
+      "enabled": 0
+    },
+    "partnerCaseForeignKeys": 0
+  },
+  "rollback": {
+    "phase6_removed": true,
+    "cases_preserved": true,
+    "phase5_preserved": true,
+    "partners_preserved": true,
+    "after": {
+      "services": 60,
+      "cases": 1,
+      "permissions": 1,
+      "partners": 0
+    },
+    "preserved": true
+  },
+  "reapplication": {
+    "passed": true
+  },
+  "passed": true
+}
