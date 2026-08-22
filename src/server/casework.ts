@@ -16,15 +16,19 @@ async function audit(client: PoolClient, actorId: string, eventType: string, res
 export async function checkCaseAccess(session: Session, caseId: string, permission = "view_summary"): Promise<CaseAccess | null> {
   const owner = await getPool().query("SELECT 1 FROM cases WHERE id=$1 AND owner_user_id=$2 AND archived_at IS NULL",[caseId,session.userId]);
   if (owner.rowCount) return { role:"owner", permissions:["owner"] };
-  const grant = await getPool().query<{permission:string}>(`SELECT p.permission FROM case_access_grants g JOIN case_access_permissions p ON p.grant_id=g.id
+  const grant = await getPool().query<{permission:string}>(`SELECT p.permission FROM case_access_grants g JOIN cases c ON c.id=g.case_id AND c.archived_at IS NULL JOIN case_access_permissions p ON p.grant_id=g.id
     WHERE g.case_id=$1 AND g.grantee_user_id=$2 AND g.starts_at<=now() AND g.expires_at>now() AND g.revoked_at IS NULL AND g.suspended_at IS NULL AND p.permission=$3`,[caseId,session.userId,permission]);
   return grant.rowCount ? { role:"advocate", permissions:grant.rows.map((row)=>row.permission) } : null;
 }
 
 export async function listCases(session: Session) {
   const result=await getPool().query<{id:string;reference:string;title_encrypted:string;case_type:string;status:string;urgency:string;updated_at:Date;role:string}>(`SELECT c.id,c.reference,c.title_encrypted,c.case_type,c.status,c.urgency,c.updated_at,
-    CASE WHEN c.owner_user_id=$1 THEN 'owner' ELSE 'advocate' END role FROM cases c LEFT JOIN case_access_grants g ON g.case_id=c.id AND g.grantee_user_id=$1 AND g.starts_at<=now() AND g.expires_at>now() AND g.revoked_at IS NULL AND g.suspended_at IS NULL
-    WHERE c.owner_user_id=$1 OR g.id IS NOT NULL ORDER BY c.updated_at DESC`,[session.userId]);
+    CASE WHEN c.owner_user_id=$1 THEN 'owner' ELSE 'advocate' END role FROM cases c
+    WHERE c.archived_at IS NULL AND (c.owner_user_id=$1 OR EXISTS (
+      SELECT 1 FROM case_access_grants g JOIN case_access_permissions p ON p.grant_id=g.id
+      WHERE g.case_id=c.id AND g.grantee_user_id=$1 AND g.starts_at<=now() AND g.expires_at>now()
+        AND g.revoked_at IS NULL AND g.suspended_at IS NULL AND p.permission='view_summary'
+    )) ORDER BY c.updated_at DESC`,[session.userId]);
   return result.rows.map((row)=>({...row,title:decryptSensitive(row.title_encrypted,`case-title:${row.id}`),title_encrypted:undefined}));
 }
 
@@ -37,7 +41,7 @@ export async function createCase(session: Session, input: {title:string;caseType
   } catch(error){await client.query("ROLLBACK");throw error} finally{client.release()}
 }
 
-export async function updateCase(session:Session,caseId:string,input:any){const access=await checkCaseAccess(session,caseId);if(access?.role!=="owner")return null;const current=await getPool().query<any>("SELECT title_encrypted FROM cases WHERE id=$1 AND owner_user_id=$2",[caseId,session.userId]);if(!current.rowCount)return null;const values:any[]=[caseId,session.userId],sets:string[]=[];const add=(column:string,value:any)=>{values.push(value);sets.push(`${column}=$${values.length}`)};if(input.title)add("title_encrypted",encryptSensitive(input.title,`case-title:${caseId}`));if(input.status)add("status",input.status);if(input.urgency)add("urgency",input.urgency);if(input.currentArea!==undefined)add("current_area",input.currentArea);if(input.currentDuty!==undefined)add("current_duty",input.currentDuty);if(input.homelessnessStage!==undefined)add("homelessness_stage",input.homelessnessStage);if(input.primaryDeadline!==undefined)add("primary_deadline",input.primaryDeadline);sets.push("updated_at=now()");await getPool().query(`UPDATE cases SET ${sets.join(",")} WHERE id=$1 AND owner_user_id=$2`,values);await getPool().query("INSERT INTO audit_events (id,actor_id,event_type,resource_type,resource_id,metadata) VALUES ($1,$2,'case.updated','case',$3,$4)",[randomUUID(),session.userId,caseId,{fields:Object.keys(input)}]);return{id:caseId}}
+export async function updateCase(session:Session,caseId:string,input:any){const access=await checkCaseAccess(session,caseId);if(access?.role!=="owner")return null;const current=await getPool().query<any>("SELECT title_encrypted FROM cases WHERE id=$1 AND owner_user_id=$2",[caseId,session.userId]);if(!current.rowCount)return null;const values:any[]=[caseId,session.userId],sets:string[]=[];const add=(column:string,value:any)=>{values.push(value);sets.push(`${column}=$${values.length}`)};if(input.title)add("title_encrypted",encryptSensitive(input.title,`case-title:${caseId}`));if(input.status){add("status",input.status);if(input.status==="archived")sets.push("archived_at=now()");if(input.status==="closed")sets.push("closed_at=coalesce(closed_at,now())")}if(input.urgency)add("urgency",input.urgency);if(input.currentArea!==undefined)add("current_area",input.currentArea);if(input.currentDuty!==undefined)add("current_duty",input.currentDuty);if(input.homelessnessStage!==undefined)add("homelessness_stage",input.homelessnessStage);if(input.primaryDeadline!==undefined)add("primary_deadline",input.primaryDeadline);sets.push("updated_at=now()");await getPool().query(`UPDATE cases SET ${sets.join(",")} WHERE id=$1 AND owner_user_id=$2`,values);await getPool().query("INSERT INTO audit_events (id,actor_id,event_type,resource_type,resource_id,metadata) VALUES ($1,$2,'case.updated','case',$3,$4)",[randomUUID(),session.userId,caseId,{fields:Object.keys(input)}]);return{id:caseId}}
 
 export async function getCase(session: Session, caseId: string) {
   const access=await checkCaseAccess(session,caseId); if(!access)return null;

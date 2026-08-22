@@ -1,26 +1,31 @@
 {
-  "generatedAt": "2026-08-01T22:51:38.333Z",
+  "generatedAt": "2026-08-02T02:37:11.657Z",
   "engine": "PostgreSQL 18 embedded test cluster",
   "migrations": [
     {
       "filename": "0001_phase1_foundation.sql",
-      "sha256": "1E80850FEF3BC13780FD70DF251103F8D05D6DC03A082466C0E1CC6A30F9A119",
+      "sha256": "9D4C0B0805F98220DE43BD90BF3AAB10761FC02ED84BA3A31B3B64D1C4FB3518",
       "state": "applied"
     },
     {
       "filename": "0002_phase2_runtime.sql",
-      "sha256": "35F406FE303B3AC1EFBA971D898874FD23C490C4D736E8CF52A7EA8E43870D74",
+      "sha256": "71BB55D4E8ECC0443BFBD0970EA7F836232EAFE3603CC4C84049456E13358542",
       "state": "applied"
     },
     {
       "filename": "0003_phase3_casework.sql",
-      "sha256": "303086021D42AAC9FC68F1978987C987955011979D6E63463636ACECFEF28770",
+      "sha256": "9C2282454E82C75C01CB1F50D0CF4733B47181E0945E5007ADBC0B7823A89373",
+      "state": "applied"
+    },
+    {
+      "filename": "0004_phase4_access_hardening.sql",
+      "sha256": "DF504FA2B6F4FF8FBF301916ECA13FE549746D861560BDD050A5421C56A5A6D8",
       "state": "applied"
     }
   ],
   "firstSeed": {
     "version": "v1.0.1",
-    "importId": "64d89271-6704-5ca7-85bc-5fa355232727",
+    "importId": "60930f52-04e5-569a-bd6c-6680e12a208a",
     "revisionId": "c9745bc8-8631-5065-ae84-12e873b2abdc",
     "status": "published",
     "counts": {
@@ -34,7 +39,7 @@
   },
   "secondSeed": {
     "version": "v1.0.1",
-    "importId": "64d89271-6704-5ca7-85bc-5fa355232727",
+    "importId": "60930f52-04e5-569a-bd6c-6680e12a208a",
     "revisionId": "c9745bc8-8631-5065-ae84-12e873b2abdc",
     "status": "idempotent",
     "counts": {
@@ -58,6 +63,18 @@
   "migrationLifecycle": {
     "rolledBack": true,
     "preservedBaselineMigrations": true,
+    "phase2SeededBeforeUpgrade": true,
+    "existingDataSurvived": true,
+    "preUpgradeCounts": {
+      "services": 60,
+      "councils": 13,
+      "revisions": 1
+    },
+    "postUpgradeCounts": {
+      "services": 60,
+      "councils": 13,
+      "revisions": 1
+    },
     "reapplied": true
   },
   "backup": {
