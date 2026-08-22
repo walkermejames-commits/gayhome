@@ -185,3 +185,4 @@ Use this section as the living record.
 | Date | Area | What changed / was learned | Owner | Evidence / link | Next action |
 | --- | --- | --- | --- | --- | --- |
 | 2026-08-22 | Workbook created | Readiness plan added after review of Phase 2 completion report. | James | `docs/RAPP_READINESS_WORKBOOK.md` | Complete baseline session. |
+| 2026-08-22 | Baseline CI | Phase 4 branch quality pipeline passed: frozen install, typecheck, lint, tests, dataset audit/import, PostgreSQL deploy/restore proof, Phase 3/4 tests, production build, dependency audit and source-content guard. Fixed pnpm setup, lockfile configuration, and patched vulnerable `nanoid` to 3.3.18. | James / Codex | PR branch commits `896c0f6`, `92fa7dd`, `0e3f682`, `46bf9fe`; Actions run 32577546670 | Begin the staging preflight when hosting and database access are available. |
